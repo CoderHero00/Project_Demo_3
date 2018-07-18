@@ -10,9 +10,9 @@ import retrofit2.http.Path;
 
 public interface CategoryServices {
 
-    @GET("api/category")
+    @GET("category")
     Call<List<Category>> getAllCategory();
 
-    @GET("api/category/{category_Title}")
+    @GET("category/{category_Title}")
     Call<Category> getCategoryByCategoryTitle(@Path("category_Title") int category_Title);
 }

@@ -22,10 +22,7 @@ import com.example.hoang.project_demo_3.R;
 import com.example.hoang.project_demo_3.ViewHolder.CategoryRecyclerViewAdapter;
 import com.example.hoang.project_demo_3.common.Common;
 import com.example.hoang.project_demo_3.entity.Category;
-import com.example.hoang.project_demo_3.entity.MyProduct;
-import com.example.hoang.project_demo_3.retrofit.network.ApiServices;
 import com.example.hoang.project_demo_3.retrofit.network.CategoryServices;
-import com.example.hoang.project_demo_3.retrofit.network.ProductService;
 import com.example.hoang.project_demo_3.retrofit.retrofit.ApiUtils;
 import com.squareup.picasso.Picasso;
 
@@ -185,6 +182,8 @@ public class Home extends AppCompatActivity
                 startActivity(cartIntent);
                 break;
             case R.id.nav_orders:
+                Intent orderIntent = new Intent(Home.this, Order_History.class);
+                startActivity(orderIntent);
                 break;
             case R.id.nav_logout:
                 Intent mainIntent = new Intent(Home.this, MainForm.class);

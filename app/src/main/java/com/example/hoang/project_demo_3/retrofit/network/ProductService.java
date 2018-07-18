@@ -18,13 +18,13 @@ public interface ProductService {
             "User-Agent: Mozilla/5.0"
     })
 
-    @GET("api/products")
+    @GET("product")
     Call<List<MyProduct>> getAllProduct();
 
-    @GET("api/products/category/{category}")
+    @GET("product/category/{category}")
     Call<List<MyProduct>> getProductbyCategory(@Path("category") int category);
 
-    @GET("api/products/{id}")
+    @GET("product/{id}")
     Call<MyProduct> getProductbyid(@Path("id") int id);
 
 }

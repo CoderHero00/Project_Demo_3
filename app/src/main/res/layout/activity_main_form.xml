@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="#fff"
     tools:context=".controller.MainForm">
 
     <LinearLayout
@@ -24,8 +24,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_margin="8dp"
             android:layout_gravity="center"
             android:src="@drawable/logo" />
@@ -37,7 +37,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:text="@string/slogan"
-            android:textColor="@android:color/black"
+            android:textColor="#504f4f"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -59,7 +59,7 @@
                 android:shadowDy="0"
                 android:shadowRadius="5"
                 android:text="Sign Up"
-                android:textColor="@android:color/white" />
+                android:textColor="#504f4f" />
 
             <Button
                 android:id="@+id/btnSignIn"
@@ -73,7 +73,7 @@
                 android:shadowDy="0"
                 android:shadowRadius="5"
                 android:text="Sign In"
-                android:textColor="@android:color/white" />
+                android:textColor="#504f4f" />
         </LinearLayout>
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

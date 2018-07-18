@@ -3,7 +3,12 @@ package com.example.hoang.project_demo_3.entity;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.UUID;
+
 public class Account {
+    @SerializedName("id")
+    @Expose
+    private long id;
     @SerializedName("phone")
     @Expose
     private String phone;
@@ -46,15 +51,31 @@ public class Account {
         this.password = password;
     }
 
-    public Account(String phone, String password, String salt,String fullname, String email, String gender) {
+    public Account(String phone, String password, String salt,String fullname, String email,String gender) {
         this.phone = phone;
         this.password = password;
         this.salt = salt;
         this.fullname = fullname;
         this.email = email;
         this.gender = gender;
+        this.role = "Member";
+        this.status = "Active";
     }
 
+    public Account(long id, String phone, String password, String fullname, String avatar, String email, String salt, String role, String status, String gender, String created_At, String updated_At) {
+        this.id = id;
+        this.phone = phone;
+        this.password = password;
+        this.fullname = fullname;
+        this.avatar = avatar;
+        this.email = email;
+        this.salt = salt;
+        this.role = role;
+        this.status = status;
+        this.gender = gender;
+        this.created_At = created_At;
+        this.updated_At = updated_At;
+    }
 
     public String getPhone() {
         return phone;
@@ -142,5 +163,13 @@ public class Account {
 
     public void setUpdated_At(String updated_At) {
         this.updated_At = updated_At;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

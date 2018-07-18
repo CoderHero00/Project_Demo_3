@@ -17,19 +17,17 @@ import com.example.hoang.project_demo_3.R;
 import com.example.hoang.project_demo_3.ViewHolder.CartRecyclerViewAdapter;
 import com.example.hoang.project_demo_3.common.Common;
 import com.example.hoang.project_demo_3.database.DBModel;
-import com.example.hoang.project_demo_3.entity.Cart;
 import com.example.hoang.project_demo_3.entity.Order;
 import com.example.hoang.project_demo_3.entity.Request;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
 public class Cart_Order extends AppCompatActivity {
     int totalPrice;
-    Cart cart = new Cart();
+    Request cart = new Request();
     EditText edtName;
     EditText edtPhone;
     EditText edtAdress;
@@ -64,26 +62,29 @@ public class Cart_Order extends AppCompatActivity {
                 edtAdress = findViewById(R.id.fram_adress);
                 edtNote = findViewById(R.id.note_frame);
                 submitBtn = findViewById(R.id.button_submit);
+                submitBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        String name = edtName.getText().toString();
+                        String phone = edtPhone.getText().toString();
+                        String adress = edtAdress.getText().toString();
+                        String note = edtNote.getText().toString();
+                        cart.setAddress(adress);
+                        cart.setName(name);
+                        cart.setPhone(phone);
+                        cart.setTotal(Integer.toString(totalPrice));
 
+
+                        new DBModel(getBaseContext()).clearCart();
+                        Toast.makeText(Cart_Order.this,"Thank you, Order Place", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    }
+                });
             }
         });
 
-        submitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String name = edtName.getText().toString();
-                String phone = edtPhone.getText().toString();
-                String adress = edtAdress.getText().toString();
-                String note = edtNote.getText().toString();
-                cart.setAddress(adress);
-                cart.setNote(note);
-                cart.setShipName(name);
-                cart.setShipPhone(phone);
-                cart.setUserFullName(Common.currentAccount.getFullname());
-                cart.setUserPhone(Common.currentAccount.getPhone());
-                cart.setTotalPrice(totalPrice);
-            }
-        });
+
 
         loadListGoods();
     }

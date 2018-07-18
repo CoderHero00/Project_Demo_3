@@ -21,15 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:label="Sign In" android:name=".controller.SignIn" android:parentActivityName=".controller.MainForm"/>
-        <activity android:label="Sign Up" android:name=".controller.SignUp" android:parentActivityName=".controller.MainForm"/>
+        <activity
+            android:name=".controller.SignIn"
+            android:label="Sign In"
+            android:parentActivityName=".controller.MainForm" />
+        <activity
+            android:name=".controller.SignUp"
+            android:label="Sign Up"
+            android:parentActivityName=".controller.MainForm" />
         <activity
             android:name=".controller.Home"
             android:label="@string/title_activity_home"
             android:theme="@style/AppTheme" />
-        <activity android:label="Product List" android:name=".controller.Goods_Activity"/>
-        <activity android:label="Product Detail" android:name=".controller.GoodsDetails" />
-        <activity android:label="Cart Order Detail" android:name=".controller.Cart_Order" />
+        <activity
+            android:name=".controller.Goods_Activity"
+            android:label="Product List" />
+        <activity
+            android:name=".controller.GoodsDetails"
+            android:label="Product Detail" />
+        <activity
+            android:name=".controller.Cart_Order"
+            android:label="Cart Order Detail" />
+        <activity android:name=".controller.Order_History"></activity>
     </application>
 
 </manifest>

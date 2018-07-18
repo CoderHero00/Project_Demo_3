@@ -15,9 +15,9 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.example.hoang.project_demo_3.entity.Account;
-import com.example.hoang.project_demo_3.utilities.hash.PasswordUtility;
 import com.example.hoang.project_demo_3.retrofit.network.ApiServices;
 import com.example.hoang.project_demo_3.retrofit.retrofit.ApiUtils;
+import com.example.hoang.project_demo_3.utilities.hash.PasswordUtility;
 import com.hbb20.CountryCodePicker;
 import com.rengwuxian.materialedittext.MaterialEditText;
 import com.example.hoang.project_demo_3.R;
@@ -84,41 +84,41 @@ public class SignUp extends AppCompatActivity {
                 radioGenderGroup.check(R.id.radioMale);
                 String radioGenderButton = ((RadioButton) findViewById(selectedId)).getText().toString();
 
-                String phoneNumber = "+" + ccp.getSelectedCountryCode() + " " + phone.toString();
-                System.out.println(phoneNumber);
+                String phoneNumber = ccp.getSelectedCountryCode().toString() + phone.toString();
 
                 if (validate.validate()) {
                     validate.clear();
-                    String salt = passwordUtility.getSalt(10);
-                    String passBeforeEncrypt = password + salt;
-                    String mySecurePassword = passwordUtility.md5(passBeforeEncrypt);
 
-                    mService = ApiUtils.getApiervice();
-                    final Account account = new Account(phoneNumber.toString().trim(), mySecurePassword.toString().trim(), salt.toString().trim(), fullname.toString().trim(), email.toString().trim(), radioGenderButton.toString().trim());
-                    mService.resForSignUp(account).enqueue(new Callback<Account>() {
-                        @Override
-                        public void onResponse(Call<Account> call, Response<Account> response) {
-                            if(response.isSuccessful()) {
-                                if (account != null) {
-                                    response.body();
-                                    Toast.makeText(SignUp.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
-                                    Intent mainIntent = new Intent(SignUp.this, SignIn.class);
-                                    startActivity(mainIntent);
-                                    finish();
-                                } else {
-                                    Toast.makeText(SignUp.this,"Sign Up Fail", Toast.LENGTH_SHORT).show();
-                                    finish();
-                                }
+                }
+
+                String salt = passwordUtility.getSalt(10);
+                String passBeforeEncrypt = password + salt;
+                String mySecurePassword = passwordUtility.md5(passBeforeEncrypt);
+                mService = ApiUtils.getApiervice();
+                Account account = new Account(phoneNumber.toString().trim(), mySecurePassword.toString().trim(), salt.toString().trim(), fullname.toString().trim(), email.toString().trim(), radioGenderButton.toString().trim());
+                mService.resForSignUp(account).enqueue(new Callback<Account>() {
+                    @Override
+                    public void onResponse(Call<Account> call, Response<Account> response) {
+                        if(response.isSuccessful()) {
+                            if (response.body() != null) {
+                                response.body();
+                                Toast.makeText(SignUp.this, "Sign Up Success", Toast.LENGTH_SHORT).show();
+                                Intent mainIntent = new Intent(SignUp.this, SignIn.class);
+                                startActivity(mainIntent);
+                                finish();
+                            } else {
+                                Toast.makeText(SignUp.this,"Sign Up Fail", Toast.LENGTH_SHORT).show();
+                                finish();
                             }
                         }
+                    }
 
-                        @Override
-                        public void onFailure(Call<Account> call, Throwable t) {
-                            Toast.makeText(SignUp.this,"Failure Connect to Server.", Toast.LENGTH_SHORT).show();
-                            finish();
-                        }
-                    });
-                }
+                    @Override
+                    public void onFailure(Call<Account> call, Throwable t) {
+                        Toast.makeText(SignUp.this,"Failure Connect to Server.", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                });
             }
         });
     }

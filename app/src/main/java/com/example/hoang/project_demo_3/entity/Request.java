@@ -11,6 +11,7 @@ public class Request {
     private List<Order> list_Order;
 
     public Request() {
+        this.status = "0";
     }
 
     public Request(String phone, String name, String address, String total, List<Order> list_Order) {
